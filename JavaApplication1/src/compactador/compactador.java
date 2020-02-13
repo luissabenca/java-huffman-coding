@@ -19,50 +19,50 @@ import java.util.logging.Logger;
 public class compactador 
 {   
     protected String diretorio;
-	protected RandomAccessFile arq;
-	protected int[] frequencia;
-	protected no<informacao> nos[];
+    protected RandomAccessFile arq;
+    protected int[] frequencia;
+    protected no<informacao> nos[];
     protected int cont = 0;
     protected codigo[] meusCodigos;
     protected int qtosDiferentes;
 
 	public compactador(String diretorioArquivo) throws Exception
 	{
-        this.cont = 0;
-        this.qtosDiferentes = 0;
-        try
-        {
+		this.cont = 0;
+		this.qtosDiferentes = 0;
+		try
+		{
 			this.diretorio = diretorioArquivo;
 			this.arq = new meuRandomAccessFile(this.diretorio, "r");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+		}
+		catch(Exception e)
+		{
+		        e.printStackTrace();
+		}
 	}
 
 	public void compactar()
-    {
-        System.out.println("Lendo arquivo");
+    	{
+       		System.out.println("Lendo arquivo");
         
-        this.frequencia = new int[256];
+        	this.frequencia = new int[256];
 
-        try 
-        {
-            for (int i = 0; i < this.arq.length(); i++) 
-            {
-                this.frequencia[this.arq.read()]++;
-            }
+        	try 
+		{
+		    for (int i = 0; i < this.arq.length(); i++) 
+		    {
+			this.frequencia[this.arq.read()]++;
+		    }
 
-            this.arq.close();
-        } 
-        catch (Exception e) 
-        {
-            System.out.println(e);
-        }
+		    this.arq.close();
+		} 
+		catch (Exception e) 
+		{
+		    System.out.println(e);
+		}
 
-        this.montarArvore();
-    }   
+		this.montarArvore();
+        }   
         
     protected void montarArvore()
     {
